@@ -120,7 +120,7 @@ async def serper_search(query: str, timeout: int = 30, top_k: int = 10) -> Searc
             error="SERPER_API_KEY environment variable not found",
         )
 
-    url = "https://google.serper.dev/search"
+    url = f'{os.getenv("SERPER_BASE_URL", "https://google.serper.dev").rstrip("/")}/search'
     payload = {"q": query, "location": "United States", "num": top_k}
     headers = {
         "X-API-KEY": api_key,
